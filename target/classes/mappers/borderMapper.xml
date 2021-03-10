@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.mapper.board">
+	<!-- 게시 목록 -->
+	<select id="list" resultType="com.board.domain.BoardVO">
+		select bno, title, content, writer,
+		regDate, viewCnt from board.tbl_board
+	</select>
+	<!-- 조회 parameter = 들어오는 데이터 result = 나가는 데이터 #{} ${}의 차이는 : #='a',사용자의 
+		입력을 받거나 데이터가 많은경우 사용 $=a,자주 바뀌지않거나 사용자의 입력을 받는경우 하지만 SQL injection의 위협이 발생할수있음 -->
+
+	<select id="view" parameterType="int"
+		resultType="com.board.domain.BoardVO">
+		SELECT
+		bno
+		, title
+		, content
+		, writer
+		, regDate
+		, viewCnt
+		FROM
+		board.tbl_board
+		WHERE
+		bno = #{bno}
+
+	</select>
+
+	<update id="up" parameterType="int">
+		UPDATE
+		board.tbl_board
+		SET
+		viewCnt=viewCnt + 1
+		WHERE
+		bno = #{bno}
+
+	</update>
+	<update id="modify" parameterType="com.board.domain.BoardVO">
+		UPDATE
+		board.tbl_board
+		SET
+		title = #{title}
+		, content = #{content}
+		, writer = #{writer}
+		WHERE
+		bno=#{bno}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+		board.tbl_board
+		WHERE
+		bno=#{bno}
+	</delete>
+	<insert id="write" parameterType="com.board.domain.BoardVO">
+		INSERT INTO
+		board.tbl_board(
+		title
+		, content
+		, writer
+		)
+		VALUES(
+		#{title}
+		, #{content}
+		, #{writer}
+		)
+	</insert>
+
+	<select id="count" resultType="int">
+		SELECT
+		COUNT (bno)
+		FROM
+		board.tbl_board
+
+
+	</select>
+
+	<select id="listPage" parameterType="hashmap" resultType = "com.board.domain.BoardVO">
+		SELECT
+		bno
+		, title
+		, writer
+		, content
+		, regDate
+		, viewCnt
+		FROM
+		board.tbl_board
+		<!-- 최신꺼부터 보이게 하기위해 내림차순(DESC)로 정렬 -->
+		ORDER BY
+		bno DESC
+		<!-- 몇개를 보여줄것인지 -->
+		LIMIT
+		#{displayPost},#{postNum}
+	</select>
+	<select id="Search" parameterType="hashmap"
+		resultType="com.board.domain.BoardVO">
+		SELECT
+		bno
+		, title
+		, writer
+		, content
+		, regDate
+		, viewCnt
+		FROM
+		board.tbl_board
+		<if test='searchType.equals("title")'>
+			WHERE
+				title
+			LIKE CONCAT<!-- #{}을 사용하면 값에 ' '이 생겨서 CONCAT을 이용하여 ' ' 제거 -->
+			<!-- #{}: 파라미터가 String 형태 ex) keyword = 1 -> keyword '1' -->
+			<!-- ${}: 파라미터가 해당 자료형으로 변경되면 출력된다 -->
+			('%',#{keyword},'%')<!-- %: ex) abc -> *bc, ab* 을 검색해도 abc가 나옴 -->
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE
+				content
+			LIKE CONCAT
+				('%',#{keyword},'%')
+		</if>
+		<if test='searchType.equals("writer")'>
+			WHERE
+				writer
+			LIKE CONCAT
+				('%',#{keyword},'%')
+		</if>
+		ORDER BY
+			bno DESC
+		LIMIT
+			#{displayPost},#{postNum}
+	</select>
+	<select id="searchCount" parameterType="hashMap"
+		resultType="int">
+		select count(bno) from board.tbl_board
+
+		<if test='searchType.equals("title")'>
+			WHERE 
+				title 
+			LIKE CONCAT
+				('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("content")'>
+			WHERE
+				content
+			LIKE CONCAT
+				('%', #{keyword}, '%')
+		</if>
+
+		<if test='searchType.equals("writer")'>
+			WHERE
+				writer 
+			LIKE CONCAT
+				('%', #{keyword}, '%')
+		</if>
+
+	</select>
+</mapper>
