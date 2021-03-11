@@ -120,11 +120,7 @@ public class Page {
 
 		// 마지막 번호 재계산
 		int endPageNum_tmp = (int) (Math.ceil((double) count / (double) postNum));
-		/*System.out.println("-------------------");
-		System.out.println(endPageNum);
-		System.out.println("-------------------");
-		System.out.println(endPageNum_tmp);
-		System.out.println("-------------------");*/
+		
 		if (endPageNum > endPageNum_tmp) {
 			
 			endPageNum = endPageNum_tmp;
@@ -133,10 +129,7 @@ public class Page {
 
 		prev = startPageNum == 1 ? false : true;
 		next = endPageNum * postNum >= count ? false : true;
-		/*System.out.println(endPageNum_tmp);
-		System.out.println("-------------------");
-		System.out.println(next);
-		System.out.println("-------------------");*/
+		
 		displayPost = (num - 1) * postNum;
 
 	}
