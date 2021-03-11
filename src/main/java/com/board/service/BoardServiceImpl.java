@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.board.dao.BoardDAO;
 import com.board.domain.BoardVO;
+import com.board.domain.Page;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -94,7 +95,8 @@ public class BoardServiceImpl implements BoardService {
 			Ptbl.addCell(cell2);
 			Ptbl.addCell(cell3);
 			Ptbl.addCell(cell4);
-			List<BoardVO> Plist = boardService.list();
+			//List<BoardVO> Plist = boardService.list();
+			List<BoardVO> Plist = dao.list();
 			for (int i = 0; i < Plist.size(); i++) {
 				BoardVO dto = Plist.get(i);
 				PdfPCell celltitle=new PdfPCell(new Phrase(dto.getTitle(),font));

@@ -134,7 +134,7 @@ public class BoardController {
         String result = service.createPdf();
         
         //return new ModelAndView("pdf/result", "message", result);
-        return "redirect:/board/listPage?num=1";
+        return "redirect:/";
 	}
 	
 	@RequestMapping(value= "/listPage", method = RequestMethod.GET)

@@ -90,7 +90,7 @@ body{
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+    color: rgb(0, 255, 0);
     background: none;
 }
 

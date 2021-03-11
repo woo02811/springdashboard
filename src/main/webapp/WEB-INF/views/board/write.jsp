@@ -53,11 +53,11 @@
 	</div>
 	<!-- --------------------------------------------- -->
 	<!-- /.modal compose message -->
-
-	<div class="modal show" id="modalCompose">
+	
+	<div class="modal show" id="modalCompose"><br/><br/><br/><br/>
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header modal-header-info">
+				<div class="modal-header modal-header-info" >
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true" onClick="history.go(-1)">×</button>
 					<h4 class="modal-title">

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<% request.setCharacterEncoding("UTF-8"); %>
 <link rel="stylesheet" href="/../../../../resources/css/bootstrap.css">
 <link rel="stylesheet"
 	href="/../../../../resources/css/simple-sidebar.css">
@@ -52,13 +53,13 @@
 								<div class="col-lg-10 mx-auto">
 									<div class="career-search mb-60">
 
-										<form action="#" class="career-form mb-60">
+										<form action="#" class="career-form mb-60" accept-charset="UTF-8">
 											<div class="row">
 												<div class="col-md-6 col-lg-3 my-3">
 													<div class="input-group position-relative">
 														<input type="text" class="form-control" name="key"
 															type="text" id="key" value="${keyword}"
-															placeholder="Enter Your Keywords" id="keywords">
+															placeholder="Enter Your Keywords" >
 													</div>
 												</div>
 												<div class="col-md-6 col-lg-3 my-3">
@@ -78,7 +79,12 @@
 												<div class="col-md-6 col-lg-3 my-3">
 													<button type="button"
 														class="btn btn-lg btn-block btn-light btn-custom"
-														id="search">Search</button>
+														id="searchKey" onClick ='searchKey()'>Search1</button>
+												</div>
+												<div class="col-md-6 col-lg-3 my-3">
+													<button type="button"
+														class="btn btn-lg btn-block btn-light btn-custom"
+														id="savePdf" onClick ='savePdf()'>Save PDF</button>
 												</div>
 											</div>
 										</form>
@@ -96,13 +102,12 @@
 														<div
 															class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
 															${vs.count+((page.num-1)*page.postNum)}</div>
-
+															
 														<div class="job-content">
-
 															<h5 class="text-center text-md-left">${list.content }</h5>
 															<ul
 																class="d-md-flex flex-wrap text-capitalize ff-open-sans">
-																<li class="mr-md-4">${list.title }</li>
+																<li class="mr-md-4">Title : ${list.title }</li>
 																<li class="mr-md-4"><i
 																	class="zmdi zmdi-assignment-account mr-2"></i>${list.writer}
 																</li>
@@ -176,7 +181,7 @@
 
 				<!-- --------------------------------------------- -->
 				<script>
-		document.getElementById("search").onclick = function(){
+		document.getElementById("searchKey").onclick = function(){
 			<!-- 제목,내용,글쓴이 중에 무엇을 선택했는지를 searchType으로 받아오고 [0]은 select가 배열이여서 -->
 			
 			var searchT = document.getElementById("searchSel");
@@ -214,6 +219,14 @@ document.getElementById("search").onclick = function(){
 	  //replace a가 b로 바뀌는것 replace를 사용하면 이전페이지(history.go(-1))로 갈수없다.
 	
 		location.replace("/board/listPageSearch?num=1");
+	}
+</script>
+<script >
+document.getElementById("savePdf").onclick = function(){
+	  //href는 a->b로 이동하는것
+	  //replace a가 b로 바뀌는것 replace를 사용하면 이전페이지(history.go(-1))로 갈수없다.
+	
+		location.replace("${path}/board/pdf?bno=${view.bno}");
 	}
 </script>
 

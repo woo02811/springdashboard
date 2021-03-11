@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@include file="list.jsp" %>
+<%@include file="listPageSearch.jsp" %>
 </head>
 <body>
 
