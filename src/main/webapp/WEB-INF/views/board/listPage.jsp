@@ -1,14 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
 <link rel="stylesheet"
 	href="/../../../../../resources/css/bootstrap.css" />
 <link rel="stylesheet" href="/../../../../../resources/css/testboot.css" />
 <link rel="stylesheet"
 	href="/../../../../../resources/css/simple-sidebar.css" />
-<!DOCTYPE html>
-<html>
-<head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
 	integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY="

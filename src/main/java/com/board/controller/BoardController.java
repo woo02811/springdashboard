@@ -1,12 +1,18 @@
 package com.board.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Required;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +55,7 @@ public class BoardController {
 	public ModelAndView getview(@RequestParam("bno") int bno, Model model) throws Exception {
 
 		BoardVO view = service.view(bno);
-
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("view", view);
 		return mav;
@@ -223,6 +229,10 @@ public class BoardController {
 		
 	}
 	
+	public void plus() {
+		System.out.println("ccccccccccccccccccccc");
+	}
+		
     
 
 }

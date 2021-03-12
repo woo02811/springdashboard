@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<% request.setCharacterEncoding("UTF-8"); %>
 <link rel="stylesheet" href="/../../../../resources/css/bootstrap.css">
 <link rel="stylesheet"
 	href="/../../../../resources/css/simple-sidebar.css">
